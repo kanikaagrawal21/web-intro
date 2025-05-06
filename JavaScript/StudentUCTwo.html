@@ -1,0 +1,20 @@
+<input type="text" id="email" placeholder="abc.xyz@bl.co.in" />
+<button onclick="validateEmail()">Check Email</button>
+<p id="emailMsg"></p>
+
+<script>
+function validateEmail() {
+  const email = document.getElementById("email").value;
+  const emailMsg = document.getElementById("emailMsg");
+
+  const regex = /^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)?@[a-zA-Z0-9]+\.[a-zA-Z]{2,3}(\.[a-zA-Z]{2})?$/;
+
+  if (regex.test(email)) {
+    emailMsg.textContent = " Valid Email";
+    emailMsg.style.color = "green";
+  } else {
+    emailMsg.textContent = " Invalid Email Format";
+    emailMsg.style.color = "red";
+  }
+}
+</script>

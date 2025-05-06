@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Attendance & Name Validation</title>
+</head>
+<body>
+
+  <h2>Enter First Name to Check Attendance</h2>
+
+  <form id="employeeForm">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" required />
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="validationMessage"></p>
+  <p id="attendanceResult"></p>
+
+  <script>
+    document.getElementById('employeeForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent form from refreshing
+
+      const firstName = document.getElementById('firstName').value;
+      const namePattern = /^[A-Z][a-zA-Z]{2,}$/; // Starts with capital, min 3 letters
+
+      const validationMsg = document.getElementById('validationMessage');
+      const attendanceResult = document.getElementById('attendanceResult');
+
+      if (!namePattern.test(firstName)) {
+        validationMsg.textContent = "Invalid First Name. It should start with a capital letter and be at least 3 characters long.";
+        attendanceResult.textContent = "";
+        return;
+      }
+
+      validationMsg.textContent = "Valid First Name!";
+
+      // Attendance check using Math.random
+      const EMP_PRESENT = 1;
+      let empCheck = Math.floor(Math.random() * 2);
+
+      if (empCheck === EMP_PRESENT) {
+        attendanceResult.textContent = `${firstName} is Present`;
+      } else {
+        attendanceResult.textContent = `${firstName} is Absent`;
+      }
+    });
+  </script>
+
+</body>
+</html>
